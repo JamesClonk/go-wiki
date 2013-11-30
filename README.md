@@ -19,7 +19,8 @@ I'll definitely have to start reading the documentation now and going through th
    
 ---   
    
-Update   
-Added hot_recompile.sh script.
-It will watch for file changes in the current directory and "restart" wiki.go if it changed.
+#### Update   
+Added hot_recompile.sh script.   
+It will watch for file changes in the current directory through inotify and "restart" wiki.go if anything has changed.   
+This kind of emulates "**Hot Reload**" as known from other web development languages / frameworks.
 
