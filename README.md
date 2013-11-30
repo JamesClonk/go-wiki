@@ -16,3 +16,10 @@ Go looks like a fun language to use, and the wiki example makes as good impressi
 
 I'll definitely have to start reading the documentation now and going through the tutorial. 
 "Slices? Huh? What's that?  ..Ahh, you mean Lists?" ;-)
+   
+---   
+   
+Update   
+Added hot_recompile.sh script.
+It will watch for file changes in the current directory and "restart" wiki.go if it changed.
+
