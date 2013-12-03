@@ -20,6 +20,7 @@ var defaultPage = "FrontPage"
 var templates = template.Must(template.ParseGlob(viewDirectory + "/*"))
 var validPath = regexp.MustCompile("^/(view|edit|save)/([a-zA-Z0-9_]+)$")
 var pageLinking = regexp.MustCompile(`\[([a-zA-Z0-9_]+)\]`)
+var newLines = regexp.MustCompile(`\n`)
 
 func main() {
 	checkDirectories()
@@ -72,7 +73,10 @@ func viewHandler(w http.ResponseWriter, r *http.Request, title string) {
 		return
 	}
 
-	p.Body = template.HTML(pageLinking.ReplaceAll([]byte(p.Body), []byte("<a href=\"/view/${1}\">${1}</a>")))
+	pH := []byte(p.Body)
+	pH = pageLinking.ReplaceAll(pH, []byte("<a href=\"/wiki/view/${1}\">${1}</a>"))
+	pH = newLines.ReplaceAll(pH, []byte("<br/>"))
+	p.Body = template.HTML(pH)
 
 	_renderTemplate(w, "view.html", p)
 }
